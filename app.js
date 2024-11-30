@@ -1,9 +1,28 @@
 import express from "express";
-import usersRouter from "./routes/users.js";
-import cardsRouter from "./routes/cards.js";
+import mongoose from "mongoose";
+import bodyParser from "body-parser";
+import usersRouter from "./routes/usersRoute.js";
+import cardsRouter from "./routes/cardsRoute.js";
 
-const port = 3000;
+const { port = 3000, BASE_PATH } = process.env;
 const app = express();
+
+// Configuração do body-parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+mongoose.connect("mongodb://localhost:27017/aroundb", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+// Middleware de autenticação temporária
+app.use((req, res, next) => {
+  req.user = {
+    _id: "67491beb043ddbcacdf0734d",
+  };
+  next();
+});
 
 app.use(usersRouter);
 app.use(cardsRouter);
@@ -20,6 +39,7 @@ app.use((err, res) => {
 });
 
 // Inicia o servidor
+
 app.listen(port, () => {
   console.log(`App listening at port ${port}`);
 });

@@ -26,12 +26,12 @@ export const createCard = (req, res) => {
 };
 
 export const deleteCard = (req, res) => {
-  const cardId = req.params.cardId;
+  const { cardId } = req.params.cardId;
   card
     .findByIdAndDelete(cardId)
     .orFail()
-    .then((card) => {
-      res.status(200).json(card);
+    .then((cardData) => {
+      res.status(200).json(cardData);
     })
     .catch((err) => {
       handleErrorResponse(err, res, "card");
@@ -46,8 +46,8 @@ export const likeCard = (req, res) => {
       { new: true }
     )
     .orFail()
-    .then((card) => {
-      res.status(200).json(card);
+    .then((cardData) => {
+      res.status(200).json(cardData);
     })
     .catch((err) => {
       handleErrorResponse(err, res, "card");
@@ -62,8 +62,8 @@ export const dislikeCard = (req, res) => {
       { new: true }
     )
     .orFail()
-    .then((card) => {
-      res.status(200).json(card);
+    .then((cardData) => {
+      res.status(200).json(cardData);
     })
     .catch((err) => {
       handleErrorResponse(err, res, "card");

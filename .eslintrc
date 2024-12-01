@@ -8,6 +8,8 @@
     "import/no-named-as-default-member": "off",
     "no-underscore-dangle": "off",
     "quotes": ["error", "double"],
+    "comma-dangle": "off",
+    "operator-linebreak": "off",
     "no-restricted-syntax": [
       "off", // Desativa a regra para qualquer tipo de sintaxe restrita
       {

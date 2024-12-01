@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import usersRouter from "./routes/usersRoute.js";
 import cardsRouter from "./routes/cardsRoute.js";
 
-const { port = 3000, BASE_PATH } = process.env;
+const { port = 3000 } = process.env;
 const app = express();
 
 // Configuração do body-parser

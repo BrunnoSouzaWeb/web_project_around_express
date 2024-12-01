@@ -13,13 +13,13 @@ export const listAllUsers = (req, res) => {
 };
 
 export const getUserById = (req, res) => {
-  const userId = req.params.userId;
+  const { userId } = req.params.userId;
 
   user
     .findById(userId)
     .orFail()
-    .then((user) => {
-      res.status(200).json(user);
+    .then((userData) => {
+      res.status(200).json(userData);
     })
     .catch((err) => {
       handleErrorResponse(err, res, "user");
